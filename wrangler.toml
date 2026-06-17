@@ -1,6 +1,6 @@
 # Cloudflare Workers static assets (matches dashboard project "soccer-mbti")
 # Build: npm run build  |  Deploy: npx wrangler deploy
-name = "dna"
+name = "soccer-mbti"
 compatibility_date = "2024-09-01"
 
 [assets]

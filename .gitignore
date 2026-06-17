@@ -1,0 +1,25 @@
+# Dependencies & build output
+node_modules
+dist
+
+# Environment & secrets (never commit)
+.env
+.env.*
+!.env.example
+
+# Local data
+data/ratings.db
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.local
+.cursor/
+.vscode/
+.idea/
+
+# Logs & caches
+*.log
+.npm
+.wrangler
+.cache

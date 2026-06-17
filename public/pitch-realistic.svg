@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 68" preserveAspectRatio="none">
+  <defs>
+    <!-- Alternating vertical mowing stripes (~12 across pitch) -->
+    <pattern id="mowStripes" patternUnits="userSpaceOnUse" width="8.75" height="68">
+      <rect width="4.375" height="68" fill="#3cb056"/>
+      <rect x="4.375" width="4.375" height="68" fill="#339a4c"/>
+    </pattern>
+    <linearGradient id="edgeVignette" x1="0" y1="0.5" x2="1" y2="0.5">
+      <stop offset="0" stop-color="#1a6b2e" stop-opacity="0.42"/>
+      <stop offset="0.12" stop-color="#2a8a3e" stop-opacity="0"/>
+      <stop offset="0.88" stop-color="#2a8a3e" stop-opacity="0"/>
+      <stop offset="1" stop-color="#1a6b2e" stop-opacity="0.42"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="68%">
+      <stop offset="0%" stop-color="#8ef0a0" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#8ef0a0" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grain" patternUnits="userSpaceOnUse" width="0.45" height="0.45">
+      <circle cx="0.22" cy="0.22" r="0.08" fill="#0d3d18" opacity="0.045"/>
+    </pattern>
+    <pattern id="netMesh" patternUnits="userSpaceOnUse" width="0.55" height="0.55">
+      <path d="M0,0 L0.55,0 M0,0 L0,0.55" stroke="rgba(255,255,255,0.42)" stroke-width="0.035"/>
+    </pattern>
+  </defs>
+
+  <rect width="105" height="68" fill="url(#mowStripes)"/>
+  <rect width="105" height="68" fill="url(#edgeVignette)"/>
+  <rect width="105" height="68" fill="url(#centerGlow)"/>
+  <rect width="105" height="68" fill="url(#grain)"/>
+
+  <!-- Goal nets (inside touchline, top-down mesh) -->
+  <g opacity="0.9">
+    <rect x="0" y="30.34" width="1.85" height="7.32" fill="url(#netMesh)" stroke="rgba(255,255,255,0.72)" stroke-width="0.09"/>
+    <rect x="103.15" y="30.34" width="1.85" height="7.32" fill="url(#netMesh)" stroke="rgba(255,255,255,0.72)" stroke-width="0.09"/>
+  </g>
+
+  <g
+    fill="none"
+    stroke="rgba(255,255,255,0.9)"
+    stroke-width="0.14"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.92"
+  >
+    <rect x="0.06" y="0.06" width="104.88" height="67.88"/>
+    <line x1="52.5" y1="0.06" x2="52.5" y2="67.94"/>
+    <circle cx="52.5" cy="34" r="9.15"/>
+    <rect x="0.06" y="13.84" width="16.44" height="40.32"/>
+    <rect x="88.5" y="13.84" width="16.44" height="40.32"/>
+    <rect x="0.06" y="24.84" width="5.44" height="18.32"/>
+    <rect x="99.5" y="24.84" width="5.44" height="18.32"/>
+    <!-- Penalty arcs: large arc outside each penalty area toward midfield -->
+    <path d="M 16.5 26.692 A 9.15 9.15 0 1 0 16.5 41.308"/>
+    <path d="M 88.5 26.692 A 9.15 9.15 0 1 1 88.5 41.308"/>
+    <!-- Corner arcs (1 m) -->
+    <path d="M 0 1 A 1 1 0 0 1 1 0"/>
+    <path d="M 104 0 A 1 1 0 0 1 105 1"/>
+    <path d="M 0 67 A 1 1 0 0 1 1 68"/>
+    <path d="M 105 67 A 1 1 0 0 1 104 68"/>
+  </g>
+
+  <circle cx="11" cy="34" r="0.28" fill="rgba(255,255,255,0.95)"/>
+  <circle cx="94" cy="34" r="0.28" fill="rgba(255,255,255,0.95)"/>
+  <circle cx="52.5" cy="34" r="0.28" fill="rgba(255,255,255,0.95)"/>
+</svg>

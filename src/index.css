@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- App background: light warm wood + embedded pitch (CSS only) --- */
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color-scheme: light;
+  --wood-base: #e8dccf;
+  --wood-deep: #d4c4b4;
+  --wood-warm: #c9b5a2;
+  --wood-grain: rgba(98, 78, 64, 0.045);
+  --wood-highlight: rgba(255, 252, 248, 0.55);
+  --pitch-edge: #2a7a3a;
+  --pitch-mid: #3aad4e;
+  --pitch-center: #52c965;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: #e2e8f0;
+  background-color: var(--wood-base);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Warm light wood: horizontal grain + soft tonal wash (not photographic) */
+.app-surface {
+  background-color: var(--wood-base);
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 5px,
+      var(--wood-grain) 5px,
+      var(--wood-grain) 6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 98, 82, 0.02) 0,
+      rgba(120, 98, 82, 0.02) 1px,
+      transparent 1px,
+      transparent 118px
+    ),
+    linear-gradient(
+      168deg,
+      var(--wood-highlight) 0%,
+      transparent 42%,
+      rgba(110, 88, 72, 0.07) 100%
+    ),
+    radial-gradient(
+      ellipse 130% 90% at 50% -5%,
+      rgba(255, 250, 245, 0.45),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 90% 70% at 80% 100%,
+      rgba(200, 180, 160, 0.2),
+      transparent 45%
+    );
+}
+
+.app-field-stage {
+  position: relative;
+  width: min(1180px, 94vw);
+  aspect-ratio: 105 / 68;
+  max-height: min(58vh, 720px);
+}
+
+/* Top-down pitch: SVG lines + green gradient; feathered mask blends into wood */
+.app-field {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  /* Realistic pitch: mowing stripes, grain, full markings, nets — see public/pitch-realistic.svg */
+  background-image: url("/pitch-realistic.svg");
+  background-size: cover;
+  box-shadow:
+    0 28px 80px rgba(28, 88, 42, 0.26),
+    0 12px 32px rgba(28, 88, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  -webkit-mask-image: radial-gradient(
+    ellipse 92% 88% at 50% 50%,
+    #000 58%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 92% 88% at 50% 50%,
+    #000 58%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* Soft outer halo so pitch dissolves into wood (no hard rectangle feel) */
+.app-field-halo {
+  position: absolute;
+  z-index: 0;
+  inset: -7%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 88% 82% at 50% 50%,
+    rgba(52, 150, 72, 0.28) 0%,
+    rgba(52, 150, 72, 0.1) 42%,
+    transparent 70%
+  );
+  filter: blur(22px);
+  opacity: 0.9;
+}
+
+/* Subtle vignette + top light on full viewport */
+.app-vignette {
+  background: radial-gradient(
+    ellipse 88% 78% at 50% 42%,
+    transparent 32%,
+    rgba(62, 52, 44, 0.08) 100%
+  );
+}
+
+/* Very light warm dim behind content column — keeps dark UI cards readable */
+.app-readability-veil {
+  background: radial-gradient(
+    ellipse 72% 58% at 50% 46%,
+    rgba(55, 48, 42, 0.07) 0%,
+    transparent 68%
+  );
+}
+
+/* --- Result screen only: glass panel (wood + pitch stay visible outside) --- */
+.result-glass-root {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow:
+    0 32px 100px -22px rgba(0, 0, 0, 0.52),
+    0 16px 48px -12px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+/* Layer 1: backdrop blur of the page behind this card only */
+.result-glass-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transform: translateZ(0);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.06);
+  -webkit-mask-image: radial-gradient(
+    ellipse 94% 92% at 50% 50%,
+    #000 54%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 94% 92% at 50% 50%,
+    #000 54%,
+    transparent 100%
+  );
+}
+
+/* Layer 2: darker center, lighter toward edges (cinematic read) */
+.result-glass-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 82% 76% at 50% 42%,
+    rgba(0, 0, 0, 0.58) 0%,
+    rgba(0, 0, 0, 0.42) 48%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 98% 96% at 50% 50%,
+    #000 48%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 98% 96% at 50% 50%,
+    #000 48%,
+    transparent 100%
+  );
+}
+
+/* Layer 3: subtle top rim light (glass edge, no layout impact) */
+.result-glass-rim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.02) 14%,
+    transparent 42%
+  );
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 0%,
+    #000 0%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 0%,
+    #000 0%,
+    transparent 72%
+  );
+}

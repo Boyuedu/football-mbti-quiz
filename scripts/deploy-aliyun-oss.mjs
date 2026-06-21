@@ -15,7 +15,27 @@ import { fileURLToPath } from "node:url";
 import OSS from "ali-oss";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const distDir = path.join(__dirname, "..", "dist");
+const projectRoot = path.join(__dirname, "..");
+const distDir = path.join(projectRoot, "dist");
+
+function loadEnvFile() {
+  const envPath = path.join(projectRoot, ".env");
+  if (!fs.existsSync(envPath)) return;
+
+  for (const line of fs.readFileSync(envPath, "utf8").split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq === -1) continue;
+    const key = trimmed.slice(0, eq).trim();
+    const value = trimmed.slice(eq + 1).trim();
+    if (!(key in process.env)) {
+      process.env[key] = value;
+    }
+  }
+}
+
+loadEnvFile();
 
 const region = process.env.ALIYUN_OSS_REGION;
 const bucket = process.env.ALIYUN_OSS_BUCKET;
@@ -26,7 +46,7 @@ const prefix = (process.env.ALIYUN_OSS_PREFIX ?? "").replace(/^\/|\/$/g, "");
 function requireEnv(name, value) {
   if (!value) {
     console.error(`Missing env: ${name}`);
-    console.error("Copy .env.example → .env and fill Aliyun OSS variables.");
+    console.error("Fill Aliyun OSS variables in .env at project root.");
     process.exit(1);
   }
 }
@@ -98,11 +118,18 @@ for (const filePath of files) {
   const ext = path.extname(filePath).toLowerCase();
   const key = objectKey(relative);
 
+  const contentType = MIME[ext] ?? "application/octet-stream";
+  const headers = {
+    "Content-Type": contentType,
+    "Cache-Control": cacheControl(relative),
+  };
+  if (ext === ".html") {
+    headers["Content-Disposition"] = "inline";
+  }
+
   await client.put(key, filePath, {
-    headers: {
-      "Content-Type": MIME[ext] ?? "application/octet-stream",
-      "Cache-Control": cacheControl(relative),
-    },
+    headers,
+    mime: contentType.split(";")[0],
   });
 
   uploaded += 1;
@@ -112,4 +139,11 @@ for (const filePath of files) {
 }
 
 console.log("\nDone. Invalidate CDN cache in Aliyun console if files look stale.");
-console.log("Docs: docs/deployment-dual-static.md");
+const bucketHost = `${bucket}.${region}.aliyuncs.com`;
+console.log("\nOSS bucket host (upload target only — browsers force-download HTML here):");
+console.log(`  https://${bucketHost}`);
+console.log("\nTo let users open the quiz in a browser, bind a custom domain in OSS console:");
+console.log("  Bucket → 传输管理 → 域名管理 → 绑定用户域名");
+console.log("  Then add a CNAME at your DNS provider pointing to the value Aliyun shows.");
+console.log("  Hong Kong bucket: no ICP filing required. See docs/deployment-dual-static.md");
+console.log("\nUntil a custom domain is ready, share the Cloudflare URL for overseas users.");

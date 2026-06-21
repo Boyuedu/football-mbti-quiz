@@ -75,7 +75,29 @@ npm run deploy:cloudflare
 Bucket → **基础设置** → **静态页面**：
 
 - 默认首页：`index.html`
-- 默认 404页：`index.html`（与 `public/_redirects` 作用相同）
+- 默认 404页：`index.html`（SPA 路由回退）
+
+**重要：阿里云 OSS 默认域名无法直接在浏览器打开 HTML 网站。**
+
+| 地址类型 | 示例 | 结果 |
+|----------|------|------|
+| ❌ 默认 OSS 域名 | `https://football-mbti.oss-cn-hongkong.aliyuncs.com/` | 浏览器会**下载** HTML，无法做题 |
+| ❌ `oss-website-` 域名 | `http://football-mbti.oss-website-cn-hongkong.aliyuncs.com` | DNS 不存在（NXDOMAIN），已不可用 |
+| ✅ 自定义域名（必须） | `https://quiz.example.com` | 正常打开网页 |
+| ✅ 自定义域名 + CDN（推荐） | `https://quiz.example.com` | 更快 + HTTPS |
+
+阿里云官方要求：静态网站托管配置好后，必须**绑定自定义域名**才能在线预览 HTML。香港 Bucket **不需要** ICP 备案。
+
+#### 绑定自定义域名（约 10 分钟）
+
+1. 准备一个域名（阿里云万网、Cloudflare 等均可）。
+2. OSS 控制台 → Bucket → **传输管理** → **域名管理** → **绑定用户域名**，填入如 `quiz.yourdomain.com`。
+3. 复制阿里云给出的 **CNAME 目标**（形如 `football-mbti.xxx.aliyuncs.com`，不是 `oss-cn-hongkong.aliyuncs.com`）。
+4. 到域名 DNS 服务商添加 **CNAME** 记录：`quiz` → 上一步的 CNAME 目标。
+5. 等待 DNS 生效（通常几分钟），浏览器访问 `https://quiz.yourdomain.com` 测试。
+6. （可选）阿里云 CDN → 添加加速域名，源站选该 OSS Bucket，加速区域选「全球（不包含中国内地）」可免备案。
+
+在自定义域名就绪前，可先用海外站：`https://soccer-mbti.kickquiz.workers.dev`。
 
 ### 3. 绑定 CDN 域名
 
@@ -113,7 +135,7 @@ npm run deploy:china
 | 受众 | 链接 |
 |------|------|
 | 海外社群、Twitter、Reddit | Cloudflare 域名，如 `https://quiz.example.com` |
-| 微信、微博、国内社群 | 国内 CDN 域名，如 `https://quiz.example.cn` |
+| 微信、微博、国内社群 | 已绑定的自定义域名，如 `https://quiz.example.com`（OSS 默认域名不可用） |
 
 两个链接打开的是**同一套测试**，结果一致。
 

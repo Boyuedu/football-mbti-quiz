@@ -5,7 +5,7 @@
 [Live (International)](https://soccer-mbti.kickquiz.workers.dev) · [Live (China)](http://football-mbti.cn) · English / 中文 · [MIT License](LICENSE)
 
 <p align="center">
-  <img src="docs/screenshots/intro.png" alt="Football DNA intro screen — Discover Your Football Archetype" width="720" />
+  <img src="docs/screenshots/cover.png" alt="Football DNA — quiz flow, archetype result, scout report, and radar chart overview" width="820" />
 </p>
 
 ---
@@ -23,6 +23,38 @@ All scoring runs in the browser — no backend is required to take the quiz.
 | **Dimensions** | Football IQ, Leadership, Creativity, Teamwork, Flair (+ Emotional Control & Courage for radar) |
 | **Languages** | English · 中文 |
 | **Stack** | React 18 · Vite 5 · Tailwind CSS · Framer Motion |
+
+---
+
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/intro.png" alt="Intro — Discover Your Football Archetype" width="720" />
+  <br /><sub>Intro · 发现你的足球人格原型</sub>
+</p>
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/quiz.png" alt="Quiz — World Cup scenario question 10 of 30" width="400" />
+      <br /><sub>Quiz · 30 个比赛瞬间</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/result.png" alt="Result — archetype, World Cup moment, best teammate, next upgrade" width="400" />
+      <br /><sub>Result · 原型与世界杯故事线</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/scout-report.png" alt="Scout report — tactical fit, strengths, and style reference" width="400" />
+      <br /><sub>Scout Report · 教练评估报告</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/player-card.png" alt="Player card — seven-axis radar and core attributes" width="400" />
+      <br /><sub>Player Build · 核心属性与雷达图</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 

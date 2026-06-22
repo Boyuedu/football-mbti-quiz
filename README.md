@@ -1,57 +1,57 @@
+<div align="center">
+
 # Football DNA
 
 **An MBTI-style football personality quiz — discover your on-pitch archetype in 30 match moments.**
 
-[Live (International)](https://soccer-mbti.kickquiz.workers.dev) · [Live (China)](http://football-mbti.cn) · English / 中文 · [MIT License](LICENSE)
+[🌐 Live (International)](https://soccer-mbti.kickquiz.workers.dev) · [🇨🇳 Live (China)](http://football-mbti.cn) · English / 中文 · [MIT License](LICENSE)
 
-<p align="center">
-  <img src="docs/screenshots/cover.png" alt="Football DNA — quiz flow, archetype result, scout report, and radar chart overview" width="820" />
-</p>
+<br />
+
+<img src="docs/screenshots/how-it-works.png" alt="Football Personality Test — match scenarios, archetype, scout report, and core profile" width="920" />
+
+<sub><b>30 moments</b> · <b>7 dimensions</b> · <b>10 archetypes</b> · <b>Scout report</b> · <b>World Cup storyline</b></sub>
+
+<br />
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-cyan.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-18-61dafb.svg)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646cff.svg)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8.svg)](https://tailwindcss.com/)
+
+</div>
 
 ---
 
-## Overview
-
-Football DNA is a static, client-side web app that maps how you react on the pitch to one of **10 football archetypes**. Answer **30 scenario-based questions** (fast breaks, set pieces, World Cup knockouts, dressing-room moments, and more), then receive a rich result profile with scout report, attribute radar, shareable player card, and platform-specific share captions.
-
-All scoring runs in the browser — no backend is required to take the quiz.
+## Highlights
 
 | | |
-|---|---|
-| **Questions** | 30 (shuffled per session) |
-| **Archetypes** | 10 base types × 3 tiers (Prime / Core / Hybrid) |
-| **Dimensions** | Football IQ, Leadership, Creativity, Teamwork, Flair (+ Emotional Control & Courage for radar) |
-| **Languages** | English · 中文 |
-| **Stack** | React 18 · Vite 5 · Tailwind CSS · Framer Motion |
+|:--|:--|
+| ⚽ **30 scenario questions** | Fast breaks, set pieces, World Cup knockouts, dressing-room moments |
+| 🧬 **10 football archetypes** | Prime · Core · Hybrid tiers from your top dimensions |
+| 📊 **7-axis player profile** | Football IQ, Leadership, Creativity, Teamwork, Flair, Emotional Control, Courage |
+| 🌍 **Bilingual** | Full English / 中文 UI and question copy |
+| 🚀 **Static & fast** | Scoring runs in the browser — no server required to take the quiz |
+| 📤 **Built to share** | Player card PNG, WeChat / Xiaohongshu / Douyin / Dongqiudi captions |
 
 ---
 
-## Screenshots
+## Product tour
 
 <p align="center">
-  <img src="docs/screenshots/intro.png" alt="Intro — Discover Your Football Archetype" width="720" />
-  <br /><sub>Intro · 发现你的足球人格原型</sub>
+  <img src="docs/screenshots/overview.png" alt="From match decisions to your core profile — quiz scenario and seven dimensions" width="920" />
+  <br /><b>Match scenarios → personalized analysis</b><br /><sub>30 football situations · 7 core dimensions · radar profile</sub>
 </p>
 
-<table align="center">
+<table>
   <tr>
     <td align="center" width="50%">
-      <img src="docs/screenshots/quiz.png" alt="Quiz — World Cup scenario question 10 of 30" width="400" />
-      <br /><sub>Quiz · 30 个比赛瞬间</sub>
+      <img src="docs/screenshots/scout-report.png" alt="Your personal scout report — strengths, risks, best role, growth advice" width="440" />
+      <br /><b>Scout Report</b><br /><sub>Strengths · risks · tactical fit · growth advice</sub>
     </td>
     <td align="center" width="50%">
-      <img src="docs/screenshots/result.png" alt="Result — archetype, World Cup moment, best teammate, next upgrade" width="400" />
-      <br /><sub>Result · 原型与世界杯故事线</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/scout-report.png" alt="Scout report — tactical fit, strengths, and style reference" width="400" />
-      <br /><sub>Scout Report · 教练评估报告</sub>
-    </td>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/player-card.png" alt="Player card — seven-axis radar and core attributes" width="400" />
-      <br /><sub>Player Build · 核心属性与雷达图</sub>
+      <img src="docs/screenshots/result-identity.png" alt="Personalized football identity — archetype, World Cup moment, teammate match" width="440" />
+      <br /><b>Football Identity</b><br /><sub>Archetype · World Cup storyline · best teammate · next upgrade</sub>
     </td>
   </tr>
 </table>
@@ -62,39 +62,31 @@ All scoring runs in the browser — no backend is required to take the quiz.
 
 | Region | URL | Hosting |
 |--------|-----|---------|
-| International | https://soccer-mbti.kickquiz.workers.dev | Cloudflare Workers |
-| China | http://football-mbti.cn | Aliyun OSS + custom domain |
+| 🌐 International | https://soccer-mbti.kickquiz.workers.dev | Cloudflare Workers |
+| 🇨🇳 China | http://football-mbti.cn | Aliyun OSS + custom domain |
 
-> **Note:** Aliyun OSS default bucket URLs force-download HTML. A **custom domain** bound to the bucket is required for browser access in China.
+> Aliyun OSS default bucket URLs force-download HTML. A **custom domain** bound to the bucket is required for browser access in China.
 
 ---
 
-## Features
+## How it works
 
-### Quiz experience
-- Immersive pitch-themed UI with progress tracking and prev/next navigation
-- Bilingual questions and UI (toggle anytime)
-- Question order randomized on each run
+```
+Intro → 30 questions (shuffled) → Score in browser → Result page
+                                              ↓
+                    Archetype · Scout report · Radar · Share card
+```
 
-### Scoring engine
-- **Pair-based lookup:** top two archetype dimensions → result tier from score gap
-- **Vector similarity:** normalized 7-axis profile compared to prototype vectors for refined classification
-- Automatic fallback if vector mapping is ambiguous
-
-### Result page
-- **Hero** — archetype name, MBTI-style code, inspired-by player
-- **World Cup extras** — signature moment, best teammate, next upgrade
-- **Scout report** — tactical role, strengths, growth areas
-- **Player build** — 7-axis radar chart and core attributes
-- **Completion stats** — global counter via Supabase (optional)
-- **Share** — copy captions for WeChat, Xiaohongshu, Douyin, Dongqiudi; download PNG player card
+1. **Answer** — pick the choice closest to your real instinct in each match moment  
+2. **Score** — pair-based lookup + 7-axis vector similarity vs. prototype profiles  
+3. **Reveal** — archetype tier, scout report, World Cup extras, downloadable player card  
 
 ---
 
 ## The 10 archetypes
 
-| Code | EN | 中文 |
-|------|----|------|
+| Code | English | 中文 |
+|------|---------|------|
 | FDNA-01 | The Defensive Commander | 防线指挥官 |
 | FDNA-02 | The Offensive Brain | 进攻大脑 |
 | FDNA-03 | The Deep Organizer | 后场组织者 |
@@ -106,17 +98,13 @@ All scoring runs in the browser — no backend is required to take the quiz.
 | FDNA-09 | The Dribbling Magician | 盘带魔术师 |
 | FDNA-10 | The Tempo Master | 节奏大师 |
 
-Each archetype can resolve as **Prime**, **Core**, or **Hybrid** depending on how clearly your top dimensions separate.
+Each archetype resolves as **Prime**, **Core**, or **Hybrid** depending on how clearly your top dimensions separate.
 
 ---
 
 ## Quick start
 
-### Prerequisites
-- **Node.js 20+**
-- **npm 9+**
-
-### Install & run locally
+**Prerequisites:** Node.js 20+ · npm 9+
 
 ```bash
 git clone https://github.com/Boyuedu/football-mbti-quiz.git
@@ -128,79 +116,62 @@ npm run dev
 
 Open http://localhost:5173
 
-### Build & preview production bundle
-
 ```bash
-npm run build
-npm run preview
+npm run build    # → dist/
+npm run preview  # preview production bundle
 ```
-
-Output is written to `dist/`.
 
 ---
 
-## Environment variables
+<details>
+<summary><b>Environment variables</b></summary>
 
 Copy `.env.example` to `.env` at the project root.
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `VITE_SUPABASE_URL` | Optional | Supabase project URL (`https://xxx.supabase.co`) — **not** the `/rest/v1/` API URL |
-| `VITE_SUPABASE_ANON_KEY` | Optional | Supabase anon / publishable key; enables completion counter on result page |
+| `VITE_SUPABASE_URL` | Optional | Supabase project URL (`https://xxx.supabase.co`) — **not** `/rest/v1/` |
+| `VITE_SUPABASE_ANON_KEY` | Optional | Anon key; enables completion counter on result page |
 | `ALIYUN_OSS_REGION` | Deploy only | e.g. `oss-cn-hongkong` |
 | `ALIYUN_OSS_BUCKET` | Deploy only | OSS bucket name |
 | `ALIYUN_OSS_ACCESS_KEY_ID` | Deploy only | RAM access key |
 | `ALIYUN_OSS_ACCESS_KEY_SECRET` | Deploy only | RAM secret |
-| `ALIYUN_OSS_PREFIX` | Optional | Folder prefix inside bucket (empty = root) |
+| `ALIYUN_OSS_PREFIX` | Optional | Folder prefix inside bucket |
 
-Without Supabase vars, the quiz works fully; the completion counter is simply hidden.
+Without Supabase vars, the quiz works fully; the completion counter is hidden.
 
-### Supabase setup
+**Supabase setup:** run `supabase/migrations/20250611000000_quiz_counter.sql`, then add URL + anon key before `npm run build`.
 
-1. Create a Supabase project.
-2. Run the migration in `supabase/migrations/20250611000000_quiz_counter.sql` (SQL editor or CLI).
-3. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to `.env` before `npm run build`.
+</details>
 
----
+<details>
+<summary><b>Deployment</b></summary>
 
-## Deployment
+One `dist/` build deploys to two regions.
 
-One build (`dist/`) is deployed to two regions for low latency worldwide.
-
-### International — Cloudflare Workers
+**International — Cloudflare Workers**
 
 ```bash
-npm run build
-npx wrangler login
-npm run deploy:cloudflare
+npm run build && npx wrangler login && npm run deploy:cloudflare
 ```
 
-Config: `wrangler.toml` (`soccer-mbti`, SPA fallback via `not_found_handling`).
+Config: `wrangler.toml` · Actions: `.github/workflows/deploy-cloudflare.yml` (manual trigger)
 
-GitHub Actions: `.github/workflows/deploy-cloudflare.yml` (manual `workflow_dispatch`).
+**China — Aliyun OSS**
 
-### China — Aliyun OSS
+1. Public-read bucket · static website (`index.html` + 404 → `index.html`, error code **200**)
+2. Fill Aliyun vars in `.env`
+3. `npm run deploy:china`
+4. Bind custom domain + CNAME
 
-1. Create a **public-read** bucket with static website hosting (`index.html` + 404 → `index.html`, error response **200** for SPA).
-2. Fill Aliyun vars in `.env`.
-3. Deploy:
+Actions: `.github/workflows/deploy-china.yml` (auto on push to `main` when secrets are set)
 
-```bash
-npm run deploy:china
-```
+Guides: [Dual-region deployment](docs/deployment-dual-static.md) · [Deploy with Git](docs/deploy-with-git.md) · [Scoring weights](docs/scoring-weights-reference.md)
 
-4. Bind a **custom domain** in OSS → 传输管理 → 域名管理, then add the CNAME at your DNS provider.
+</details>
 
-GitHub Actions: `.github/workflows/deploy-china.yml` (auto on push to `main` when secrets are set).
-
-Detailed guides:
-- [Dual-region deployment](docs/deployment-dual-static.md)
-- [Deploy with Git & GitHub Actions](docs/deploy-with-git.md)
-- [Scoring weights reference](docs/scoring-weights-reference.md)
-
----
-
-## Project structure
+<details>
+<summary><b>Project structure</b></summary>
 
 ```
 football-mbti-quiz/
@@ -221,17 +192,16 @@ football-mbti-quiz/
 │       ├── share/           # Platform share formats & card export
 │       ├── quiz/            # Question ordering, completion counter
 │       └── supabase/        # Supabase client
-├── scripts/
-│   ├── deploy-aliyun-oss.mjs
-│   └── export-weights.mjs
+├── scripts/                 # OSS deploy, weight export
 ├── supabase/migrations/     # Completion counter SQL
 ├── docs/                    # Deployment & scoring docs
 └── .github/workflows/       # CI deploy workflows
 ```
 
----
+</details>
 
-## Scripts
+<details>
+<summary><b>Scripts &amp; tech stack</b></summary>
 
 | Command | Description |
 |---------|-------------|
@@ -240,20 +210,17 @@ football-mbti-quiz/
 | `npm run preview` | Preview `dist/` locally |
 | `npm run deploy:cloudflare` | Build + deploy to Cloudflare Workers |
 | `npm run deploy:china` | Build + upload to Aliyun OSS |
-| `npm run export:weights` | Export scoring weight matrix (maintainers) |
-
----
-
-## Tech stack
+| `npm run export:weights` | Export scoring weight matrix |
 
 | Layer | Choice |
 |-------|--------|
 | UI | React 18, Tailwind CSS 3, Framer Motion |
 | Build | Vite 5 |
 | Analytics counter | Supabase (PostgreSQL + RPC) |
-| International CDN | Cloudflare Workers (static assets) |
+| International CDN | Cloudflare Workers |
 | China CDN | Aliyun OSS + custom domain |
-| Optional API | `server/rating-api-example.js` (Express + SQLite demo) |
+
+</details>
 
 ---
 
@@ -261,40 +228,36 @@ football-mbti-quiz/
 
 Contributions are welcome under the [MIT License](LICENSE).
 
-- **Bug reports & ideas** — open a [GitHub issue](https://github.com/Boyuedu/football-mbti-quiz/issues)
-- **Pull requests** — fork, branch, and PR; keep changes focused
-- **Questions & translations** — issues are fine for discussion before large edits
+- **Bug reports & ideas** — [GitHub Issues](https://github.com/Boyuedu/football-mbti-quiz/issues)
+- **Pull requests** — fork, branch, PR; keep changes focused
 
 ---
 
 ## 中文简介
 
-**Football DNA（足球 DNA）** 是一款 MBTI 风格的足球人格测试：30 道真实比赛情境题，测出你的 **10 大球员原型** 之一，并生成教练报告、七维雷达图、可下载球员卡和多平台分享文案。
+**Football DNA（足球 DNA）** 是一款 MBTI 风格的足球人格测试：30 道比赛情境题，测出 **10 大球员原型**，并生成教练报告、七维雷达图、可下载球员卡和多平台分享文案。
 
 | 链接 | 说明 |
 |------|------|
 | [海外版](https://soccer-mbti.kickquiz.workers.dev) | Cloudflare 全球加速 |
 | [国内版](http://football-mbti.cn) | 阿里云 OSS + 自定义域名 |
 
-本地开发：`npm ci && npm run dev`  
-国内部署详见 [docs/deployment-dual-static.md](docs/deployment-dual-static.md)
+`npm ci && npm run dev` · 部署见 [docs/deployment-dual-static.md](docs/deployment-dual-static.md)
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE).
-
-You may use, modify, and distribute the code with attribution. Quiz copy, archetype content, and branding remain part of the project; derivative works should retain the copyright notice.
+MIT — see [LICENSE](LICENSE). Quiz copy and archetype content are part of the project; derivative works should retain the copyright notice.
 
 ---
 
-## Acknowledgements
+<div align="center">
 
-Inspired by football culture and MBTI-style personality frameworks. Player references and archetype copy are for entertainment and self-reflection — not clinical or professional assessment.
+Inspired by football culture and MBTI-style personality frameworks — for entertainment and self-reflection, not clinical assessment.
 
----
+<br />
 
-<p align="center">
-  <sub>Built with ⚽ for the World Cup season</sub>
-</p>
+<sub>Built with ⚽ for the World Cup season</sub>
+
+</div>

@@ -8,7 +8,7 @@
 
 <br />
 
-<img src="docs/screenshots/how-it-works.png" alt="Football Personality Test — match scenarios, archetype, scout report, and core profile" width="920" />
+<img src="docs/screenshots/cover.png" alt="Football DNA — Discover Your Football Archetype" width="920" />
 
 <sub><b>30 moments</b> · <b>7 dimensions</b> · <b>10 archetypes</b> · <b>Scout report</b> · <b>World Cup storyline</b></sub>
 
